@@ -1,0 +1,594 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 350px;
+  min-height: 500px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', Roboto, sans-serif;
+  font-size: 13px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+  color: #f5f5f5;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(207, 185, 145, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(207, 185, 145, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  border: 1px solid rgba(207, 185, 145, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.header h1 {
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #cfb991, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.refresh-btn {
+  background: rgba(207, 185, 145, 0.15);
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  color: #cfb991;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.refresh-btn:hover {
+  background: rgba(207, 185, 145, 0.25);
+  border-color: rgba(207, 185, 145, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(207, 185, 145, 0.2);
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  color: #f5f5f5;
+  font-size: 14px;
+  outline: none;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#searchInput::placeholder {
+  color: rgba(245, 245, 245, 0.4);
+}
+
+#searchInput:focus {
+  border-color: rgba(207, 185, 145, 0.4);
+  box-shadow: 0 0 0 4px rgba(207, 185, 145, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#searchBtn {
+  background: linear-gradient(135deg, #cfb991, #b8a082);
+  color: #000000;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(207, 185, 145, 0.3);
+}
+
+#searchBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(207, 185, 145, 0.4);
+  background: linear-gradient(135deg, #d4be96, #cfb991);
+}
+
+#searchBtn:active {
+  transform: translateY(0);
+}
+
+/* Sections */
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  padding: 0 2px;
+  letter-spacing: -0.3px;
+}
+
+/* Glass Cards */
+.class-item, .assignment-item {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.class-item::before, .assignment-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(207, 185, 145, 0.3), transparent);
+}
+
+.class-item:hover, .assignment-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(207, 185, 145, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+}
+
+.class-item.added {
+  border-color: rgba(207, 185, 145, 0.3);
+  background: rgba(207, 185, 145, 0.08);
+}
+
+.class-item.added::before {
+  background: linear-gradient(90deg, transparent, rgba(207, 185, 145, 0.5), transparent);
+}
+
+/* Class Item Content */
+.class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.class-code {
+  font-weight: 700;
+  font-size: 15px;
+  background: linear-gradient(135deg, #cfb991, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+.class-name {
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.8);
+  margin-bottom: 6px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.class-meta {
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.5);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Class Actions */
+.class-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Buttons */
+.add-btn, .remove-btn, .office-hours-btn {
+  background: rgba(207, 185, 145, 0.15);
+  color: #cfb991;
+  border: 1px solid rgba(207, 185, 145, 0.25);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  letter-spacing: 0.3px;
+}
+
+.remove-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(245, 245, 245, 0.7);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.add-btn:hover {
+  background: rgba(207, 185, 145, 0.25);
+  border-color: rgba(207, 185, 145, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(207, 185, 145, 0.2);
+}
+
+.remove-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.add-btn[style*="cursor: default"] {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(245, 245, 245, 0.4);
+  border-color: rgba(255, 255, 255, 0.08);
+  cursor: default !important;
+}
+
+/* Assignment Items */
+.assignment-item {
+  position: relative;
+}
+
+.assignment-item.completed {
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.assignment-item.completed .assignment-title {
+  text-decoration: line-through;
+  color: rgba(245, 245, 245, 0.5);
+}
+
+.assignment-item.due-soon {
+  border-left: 3px solid #cfb991;
+  background: rgba(207, 185, 145, 0.06);
+}
+
+.assignment-item.overdue {
+  border-left: 3px solid rgba(207, 185, 145, 0.8);
+  background: rgba(207, 185, 145, 0.1);
+}
+
+.assignment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.assignment-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  flex: 1;
+  margin-right: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+.assignment-type {
+  background: rgba(207, 185, 145, 0.15);
+  color: #cfb991;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.assignment-meta {
+  font-size: 11px;
+  color: rgba(245, 245, 245, 0.6);
+  margin-bottom: 8px;
+}
+
+.assignment-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: rgba(245, 245, 245, 0.5);
+  margin-bottom: 12px;
+}
+
+.assignment-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignment-actions label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.assignment-actions label:hover {
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.complete-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(207, 185, 145, 0.4);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.complete-checkbox:hover {
+  border-color: rgba(207, 185, 145, 0.6);
+  background: rgba(207, 185, 145, 0.08);
+}
+
+.complete-checkbox:checked {
+  background: linear-gradient(135deg, #cfb991, #b8a082);
+  border-color: #cfb991;
+}
+
+.complete-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  font-size: 13px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.view-link {
+  color: #cfb991;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(207, 185, 145, 0.1);
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.2px;
+}
+
+.view-link:hover {
+  background: rgba(207, 185, 145, 0.2);
+  border-color: rgba(207, 185, 145, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(207, 185, 145, 0.15);
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  color: rgba(245, 245, 245, 0.5);
+  font-style: italic;
+  padding: 32px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(15px);
+  font-size: 13px;
+}
+
+/* Loading Indicator */
+.loading {
+  text-align: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  backdrop-filter: blur(15px);
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(207, 185, 145, 0.2);
+  border-top: 3px solid #cfb991;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  margin: 0 auto 16px;
+}
+
+.loading p {
+  color: rgba(245, 245, 245, 0.7);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Messages */
+.error {
+  background: rgba(207, 185, 145, 0.1);
+  color: #cfb991;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  margin-bottom: 18px;
+  backdrop-filter: blur(15px);
+}
+
+/* Success Messages */
+.success {
+  background: rgba(207, 185, 145, 0.12);
+  color: #cfb991;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  border: 1px solid rgba(207, 185, 145, 0.25);
+  margin-bottom: 18px;
+  backdrop-filter: blur(15px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(207, 185, 145, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(207, 185, 145, 0.5);
+}
+
+/* Focus states - no red borders */
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+*:focus-visible {
+  outline: 2px solid rgba(207, 185, 145, 0.5) !important;
+  outline-offset: 2px !important;
+}
+
+/* Office Hours Dropdown */
+.office-hours-btn.active {
+  background: rgba(207, 185, 145, 0.25);
+  border-color: rgba(207, 185, 145, 0.4);
+}
+
+.office-hours-dropdown {
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  animation: slideDown 0.3s ease-out;
+}
+
+.office-hours-header {
+  padding: 10px 14px;
+  background: rgba(207, 185, 145, 0.1);
+  border-bottom: 1px solid rgba(207, 185, 145, 0.15);
+  font-weight: 600;
+  font-size: 13px;
+  color: #cfb991;
+  letter-spacing: 0.5px;
+}
+
+.office-hours-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.office-hour-item {
+  padding: 8px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.office-hour-item:last-child {
+  border-bottom: none;
+}
+
+.office-hour-item:hover {
+  background: rgba(207, 185, 145, 0.08);
+}
+
+.office-hour-day {
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
+  min-width: 70px;
+}
+
+.office-hour-details {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.office-hour-time {
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.8);
+  font-weight: 500;
+}
+
+.office-hour-location {
+  font-size: 11px;
+  color: rgba(245, 245, 245, 0.6);
+  margin-top: 2px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

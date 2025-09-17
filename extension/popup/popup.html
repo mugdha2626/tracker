@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrackWork</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>TrackWork</h1>
+      <button id="refreshBtn" class="refresh-btn">↻</button>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+      <input type="text" id="searchInput" placeholder="Search classes (e.g., CS101, Math)" />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <!-- My Classes Section -->
+    <div class="section">
+      <h2>My Classes</h2>
+      <div id="myClasses" class="class-list">
+        <p class="empty-state">No classes added yet. Search and add classes above!</p>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    <div class="section" id="searchSection" style="display: none;">
+      <h2>Search Results</h2>
+      <div id="searchResults" class="class-list"></div>
+    </div>
+
+    <!-- Assignments Section -->
+    <div class="section">
+      <h2>Upcoming Assignments</h2>
+      <div id="assignments" class="assignment-list">
+        <p class="empty-state">Add classes to see assignments</p>
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loadingIndicator" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <!-- Error messages -->
+    <div id="errorMessage" class="error" style="display: none;"></div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="../utils/api.js"></script>
+  <script src="../utils/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
