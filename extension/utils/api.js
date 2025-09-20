@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://tracker-one-zeta.vercel.app/api';
 class API {
   static async request(endpoint, options = {}) {
     const url = `${API_BASE_URL}${endpoint}`;
