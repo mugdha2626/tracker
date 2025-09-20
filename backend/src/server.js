@@ -19,11 +19,13 @@ app.use(cors({
 app.use(express.json());
 
 const { addCS211 } = require('./models/addCS211');
+const addCS251 = require('./models/addCS251');
 mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log('Connected to MongoDB');
-    // Add CS211 data if it doesn't exist (both dev and production)
+    // Add class data if it doesn't exist (both dev and production)
     await addCS211();
+    await addCS251();
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error);
