@@ -337,7 +337,21 @@ class PopupApp {
         return;
       }
 
-      const assignmentsHtml = assignments.map(assignment => {
+      // Sort assignments: incomplete first, then completed
+      const sortedAssignments = assignments.sort((a, b) => {
+        const aCompleted = this.completedAssignments.some(completed =>
+          completed.assignmentId === a._id && completed.classId === a.classId
+        );
+        const bCompleted = this.completedAssignments.some(completed =>
+          completed.assignmentId === b._id && completed.classId === b.classId
+        );
+
+        if (aCompleted && !bCompleted) return 1; // a goes after b
+        if (!aCompleted && bCompleted) return -1; // a goes before b
+        return 0; // maintain original order
+      });
+
+      const assignmentsHtml = sortedAssignments.map(assignment => {
         const isCompleted = this.completedAssignments.some(completed =>
           completed.assignmentId === assignment._id && completed.classId === assignment.classId
         );
