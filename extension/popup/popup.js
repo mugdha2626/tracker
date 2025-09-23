@@ -337,7 +337,7 @@ class PopupApp {
         return;
       }
 
-      // Sort assignments: incomplete first, then completed
+      // Sort assignments: incomplete first (by due date), then completed (by due date)
       const sortedAssignments = assignments.sort((a, b) => {
         const aCompleted = this.completedAssignments.some(completed =>
           completed.assignmentId === a._id && completed.classId === a.classId
@@ -346,9 +346,14 @@ class PopupApp {
           completed.assignmentId === b._id && completed.classId === b.classId
         );
 
+        // First sort by completion status
         if (aCompleted && !bCompleted) return 1; // a goes after b
         if (!aCompleted && bCompleted) return -1; // a goes before b
-        return 0; // maintain original order
+
+        // Within same completion status, sort by due date (soonest first)
+        const aDueDate = new Date(a.dueDate);
+        const bDueDate = new Date(b.dueDate);
+        return aDueDate - bDueDate;
       });
 
       const assignmentsHtml = sortedAssignments.map(assignment => {
