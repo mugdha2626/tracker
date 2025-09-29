@@ -13,8 +13,8 @@ const cs211Class = {
       title: 'Topic 3: Divide and Conquer, Meet in the Middle',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-09-11T13:00:00Z'), // Thursday 8am EST = 1pm UTC
-      dueDate: new Date('2025-09-18T04:59:59Z'),   // Thursday 11:59pm EST = 4:59am UTC next day
+      openDate: new Date('2025-09-18T13:00:00Z'), // Thursday 8am EST = 1pm UTC
+      dueDate: new Date('2025-09-25T03:59:59Z'),   // Thursday 11:59pm EST = 3:59am UTC next day
       points: 4,
       tags: ['divide-conquer', 'algorithms'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -23,8 +23,8 @@ const cs211Class = {
       title: 'Topic 4: Bisection/BSTA, Meet in the Middle',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-09-18T13:00:00Z'),
-      dueDate: new Date('2025-09-25T04:59:59Z'),
+      openDate: new Date('2025-09-25T13:00:00Z'),
+      dueDate: new Date('2025-10-02T03:59:59Z'),
       points: 4,
       tags: ['binary-search', 'algorithms'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -33,8 +33,8 @@ const cs211Class = {
       title: 'Topic 5: Intro to Dynamic Programming',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-09-25T13:00:00Z'),
-      dueDate: new Date('2025-10-02T04:59:59Z'),
+      openDate: new Date('2025-10-01T13:00:00Z'),
+      dueDate: new Date('2025-10-08T03:59:59Z'),
       points: 4,
       tags: ['dynamic-programming', 'algorithms'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -43,8 +43,8 @@ const cs211Class = {
       title: 'Topic 6: DP Applications and 2 Pointer Technique',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-10-02T13:00:00Z'),
-      dueDate: new Date('2025-10-09T04:59:59Z'),
+      openDate: new Date('2025-10-08T13:00:00Z'),
+      dueDate: new Date('2025-10-15T03:59:59Z'),
       points: 4,
       tags: ['dynamic-programming', 'two-pointers'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -53,8 +53,8 @@ const cs211Class = {
       title: 'Topic 7: DP2',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-10-09T13:00:00Z'),
-      dueDate: new Date('2025-10-16T04:59:59Z'),
+      openDate: new Date('2025-10-15T13:00:00Z'),
+      dueDate: new Date('2025-10-22T03:59:59Z'),
       points: 4,
       tags: ['dynamic-programming', 'advanced'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -63,8 +63,8 @@ const cs211Class = {
       title: 'Topic 8: Graphs 1: Review, DFS/BFS, CC/SCC',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-10-16T13:00:00Z'),
-      dueDate: new Date('2025-10-23T04:59:59Z'),
+      openDate: new Date('2025-10-22T13:00:00Z'),
+      dueDate: new Date('2025-10-29T03:59:59Z'),
       points: 4,
       tags: ['graphs', 'dfs', 'bfs'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -73,8 +73,8 @@ const cs211Class = {
       title: 'Topic 9: Graphs 2: Floodfill and Topological Sort Intro',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-10-23T13:00:00Z'),
-      dueDate: new Date('2025-10-30T03:59:59Z'), // Note: CET time, so 1 hour earlier
+      openDate: new Date('2025-10-29T13:00:00Z'),
+      dueDate: new Date('2025-11-05T03:59:59Z'), // 11:59pm EST
       points: 4,
       tags: ['graphs', 'floodfill', 'topological-sort'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -83,8 +83,8 @@ const cs211Class = {
       title: 'Topic 10: Graphs 3: Shortest Paths and CP2 Introduction',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-10-30T14:00:00Z'), // CET time
-      dueDate: new Date('2025-11-06T04:59:59Z'),
+      openDate: new Date('2025-11-05T14:00:00Z'), // CET time
+      dueDate: new Date('2025-11-12T03:59:59Z'),
       points: 4,
       tags: ['graphs', 'shortest-paths', 'dijkstra'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'
@@ -93,8 +93,8 @@ const cs211Class = {
       title: 'Topic 11: Random Problem Solving',
       type: 'assignment',
       description: '',
-      openDate: new Date('2025-11-06T14:00:00Z'), // CET time
-      dueDate: new Date('2025-11-13T04:59:59Z'),
+      openDate: new Date('2025-11-12T14:00:00Z'), // CET time
+      dueDate: new Date('2025-11-19T03:59:59Z'),
       points: 4,
       tags: ['problem-solving', 'mixed'],
       submissionLink: 'https://purdue.kattis.com/courses/CS211-CP1/2025-Fall'

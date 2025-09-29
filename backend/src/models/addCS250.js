@@ -16,7 +16,16 @@ async function addCS250() {
       instructor: 'George Adams',
       semester: 'Fall 2024',
       assignments: [
-        // Placeholder assignments - user will add manually later
+        {
+          title: 'HW05',
+          type: 'assignment',
+          description: 'ZyBooks assignment',
+          openDate: new Date('2025-09-28T00:00:00Z'),
+          dueDate: new Date('2025-10-03T03:59:59Z'),
+          points: null,
+          tags: ['zybooks'],
+          submissionLink: 'https://learn.zybooks.com/zybook/PURDUECS25000AdamsFall2025'
+        }
       ],
       officeHours: [
         // Professor Office Hours

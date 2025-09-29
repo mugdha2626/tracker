@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -18,21 +17,8 @@ app.use(cors({
 
 app.use(express.json());
 
-const { addCS211 } = require('./models/addCS211');
-const addCS251 = require('./models/addCS251');
-const addCS250 = require('./models/addCS250');
-mongoose.connect(process.env.MONGODB_URI)
-  .then(async () => {
-    console.log('Connected to MongoDB');
-    // Add class data if it doesn't exist (both dev and production)
-    await addCS211();
-    await addCS251();
-    await addCS250();
-  })
-  .catch((error) => {
-    console.error('MongoDB connection error:', error);
-    process.exit(1);
-  });
+// MongoDB connection and class data loading removed - using hardcoded data instead
+console.log('Using hardcoded class data - MongoDB connection not required');
 
 app.get('/', (req, res) => {
   res.json({
@@ -60,6 +46,5 @@ app.listen(PORT, () => {
 
 process.on('SIGTERM', async () => {
   console.log('SIGTERM received, shutting down gracefully');
-  await mongoose.connection.close();
   process.exit(0);
 });

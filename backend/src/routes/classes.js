@@ -1,21 +1,31 @@
 const express = require('express');
-const Class = require('../models/Class');
+const {
+  getAllClasses,
+  getClassByCode,
+  getClassById,
+  searchClasses,
+  getAssignmentsByClassId,
+  getAssignmentsByClassCode
+} = require('../data/hardcodedClasses');
 const router = express.Router();
 router.get('/', async (req, res) => {
   try {
-    const classes = await Class.find(
-      { isActive: true }, 
-      {
-        classCode: 1,
-        className: 1,
-        instructor: 1,
-        semester: 1,
-        department: 1,
-        description: 1,
-        assignmentCount: 1, 
-        officeHours: 1 
+    const classes = getAllClasses().map(cls => ({
+      _id: cls._id,
+      classCode: cls.classCode,
+      className: cls.className,
+      instructor: cls.instructor,
+      semester: cls.semester,
+      department: cls.department,
+      description: cls.description,
+      assignmentCount: cls.assignmentCount,
+      officeHours: cls.officeHours
+    })).sort((a, b) => {
+      if (a.department !== b.department) {
+        return a.department.localeCompare(b.department);
       }
-    ).sort({ department: 1, classCode: 1 });
+      return a.classCode.localeCompare(b.classCode);
+    });
 
     res.json({
       success: true,
@@ -43,32 +53,23 @@ router.get('/search', async (req, res) => {
         error: 'Search query must be at least 2 characters long'
       });
     }
-    const classes = await Class.find(
-      {
-        $and: [
-          { isActive: true },
-          {
-            $or: [
-              { className: { $regex: searchTerm, $options: 'i' } },
-              { classCode: { $regex: searchTerm, $options: 'i' } },
-              { department: { $regex: searchTerm, $options: 'i' } },
-              { instructor: { $regex: searchTerm, $options: 'i' } }
-            ]
-          }
-        ]
-      },
-      {
-        classCode: 1,
-        className: 1,
-        instructor: 1,
-        semester: 1,
-        department: 1,
-        description: 1,
-        assignmentCount: 1,
-        officeHours: 1
+
+    const classes = searchClasses(searchTerm).map(cls => ({
+      _id: cls._id,
+      classCode: cls.classCode,
+      className: cls.className,
+      instructor: cls.instructor,
+      semester: cls.semester,
+      department: cls.department,
+      description: cls.description,
+      assignmentCount: cls.assignmentCount,
+      officeHours: cls.officeHours
+    })).sort((a, b) => {
+      if (a.department !== b.department) {
+        return a.department.localeCompare(b.department);
       }
-    ).sort({ department: 1, classCode: 1 })
-      .limit(20);
+      return a.classCode.localeCompare(b.classCode);
+    }).slice(0, 20);
 
     res.json({
       success: true,
@@ -89,11 +90,7 @@ router.get('/search', async (req, res) => {
 router.get('/:classId/assignments', async (req, res) => {
   try {
     const classId = req.params.classId;
-    const classData = await Class.findById(classId, {
-      classCode: 1,
-      className: 1,
-      assignments: 1
-    });
+    const classData = getClassById(classId);
 
     if (!classData) {
       return res.status(404).json({
@@ -101,8 +98,8 @@ router.get('/:classId/assignments', async (req, res) => {
         error: 'Class not found'
       });
     }
-    const activeAssignments = classData.assignments
-      .filter(assignment => assignment.isActive)
+
+    const activeAssignments = getAssignmentsByClassId(classId)
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
     res.json({
@@ -115,13 +112,6 @@ router.get('/:classId/assignments', async (req, res) => {
 
   } catch (error) {
     console.error('Error fetching assignments:', error);
-    if (error.name === 'CastError') {
-      return res.status(400).json({
-        success: false,
-        error: 'Invalid class ID format'
-      });
-    }
-
     res.status(500).json({
       success: false,
       error: 'Failed to fetch assignments',
@@ -132,15 +122,7 @@ router.get('/:classId/assignments', async (req, res) => {
 router.get('/:classCode/by-code/assignments', async (req, res) => {
   try {
     const classCode = req.params.classCode.toUpperCase();
-
-    const classData = await Class.findOne(
-      { classCode: classCode, isActive: true },
-      {
-        classCode: 1,
-        className: 1,
-        assignments: 1
-      }
-    );
+    const classData = getClassByCode(classCode);
 
     if (!classData) {
       return res.status(404).json({
@@ -148,8 +130,8 @@ router.get('/:classCode/by-code/assignments', async (req, res) => {
         error: `Class with code ${classCode} not found`
       });
     }
-    const activeAssignments = classData.assignments
-      .filter(assignment => assignment.isActive)
+
+    const activeAssignments = getAssignmentsByClassCode(classCode)
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
     res.json({
